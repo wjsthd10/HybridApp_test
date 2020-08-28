@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="kr">
+    <head>
+        <meta charset="UTF-8">
+<!--        <title>Document</title>-->
+<!--        부트스트랩의 css만 사용-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+        <script>
+            //Native Android에서 호출할 함수 - 함수 파라미터로 값 전달 받음
+            function setReceivedMessage(msg){
+                document.getElementById('msg').innerHTML=msg;
+            }
+
+            // Native Java에 메세지를 보내는 작업 함수
+            function sendMessage(){
+                //input요소에 써있는 보낼 메세지 얻어오기
+                var msg=document.getElementById('in1').value;
+
+                // 안드로이드와 연결
+                // Android에서 연결자로 만든 객체의 별명('Droid' )를 사용
+                window.Droid.setTextView(msg);
+            }
+            // 갤러리앱 실행해주는 JAVA코드를 실행
+            function openGallery(){
+                Droid.openGallery();
+            }
+
+        </script>
+    </head>
+    <body>
+        <div class="container mt-3">
+            <h5>Native Java로 보낼 메세지</h5>
+            <input class="form-control mt-3" type="text" id="in1" placeholder="input message">
+            <button onclick="sendMessage()" class="btn btn-primary btn-block">send message to Native Java</button>
+
+            <h5 class="mt-5">Native Android로 부터 받은 메세지 보여주기</h5>
+            <h6 class="mt-3" id="msg">WAIT....</h6>
+
+            <button class="btn btn-success btn-block mt-5" onclick="openGallery()">open Gallery</button>
+
+        </div>
+    </body>
+</html>
